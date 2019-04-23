@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.kailin.bus.ui.main.fragment.HomeFragment"
+        android:label="HomeFragment">
+    </fragment>
+
+    <fragment
+        android:id="@+id/busFragment"
+        android:name="com.kailin.bus.ui.main.fragment.BusFragment"
+        android:label="BusFragment">
+    </fragment>
+
+    <fragment
+        android:id="@+id/bikeFragment"
+        android:name="com.kailin.bus.ui.main.fragment.BikeFragment"
+        android:label="BikeFragment">
+    </fragment>
+
+    <fragment
+        android:id="@+id/subwayFragment"
+        android:name="com.kailin.bus.ui.main.fragment.SubwayFragment"
+        android:label="SubwayFragment">
+    </fragment>
+
+    <fragment
+        android:id="@+id/appsFragment"
+        android:name="com.kailin.bus.ui.main.fragment.AppsFragment"
+        android:label="AppsFragment">
+    </fragment>
+
+</navigation>

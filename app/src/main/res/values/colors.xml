@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--home color-->
+    <color name="AppTheme_ColorPrimary">#29b6f6</color>
+    <color name="AppTheme_ColorPrimaryDark">#0086c3</color>
+    <color name="AppTheme_ColorPrimaryText">#000000</color>
+    <color name="AppTheme_ColorSecondary">#8e24aa</color>
+    <color name="AppTheme_ColorSecondaryText">#ffffff</color>
+
+    <color name="AppTheme_ColorDivider">#BDBDBD</color>
+    <color name="AppTheme_ColorIcon">#FFFFFF</color>
+
+    <!--bus color-->
+    <color name="AppTheme_Bus_ColorPrimary">#4caf50</color>
+    <color name="AppTheme_Bus_ColorPrimaryDark">#087f23</color>
+    <color name="AppTheme_Bus_ColorPrimaryText">#000000</color>
+    <color name="AppTheme_Bus_ColorSecondary">#1976d2</color>
+    <color name="AppTheme_Bus_ColorSecondaryText">#ffffff</color>
+
+    <!--bike color-->
+    <color name="AppTheme_Bike_ColorPrimary">#fb8c00</color>
+    <color name="AppTheme_Bike_ColorPrimaryDark">#c25e00</color>
+    <color name="AppTheme_Bike_ColorPrimaryText">#000000</color>
+    <color name="AppTheme_Bike_ColorSecondary">#8e24aa</color>
+    <color name="AppTheme_Bike_ColorSecondaryText">#ffffff</color>
+
+    <!--<subway color-->
+    <color name="AppTheme_Subway_ColorPrimary">#90a4ae</color>
+    <color name="AppTheme_Subway_ColorPrimaryDark">#62757f</color>
+    <color name="AppTheme_Subway_ColorPrimaryText">#000000</color>
+    <color name="AppTheme_Subway_ColorSecondary">#212121</color>
+    <color name="AppTheme_Subway_ColorSecondaryText">#ffffff</color>
+
+    <!--apps color-->
+    <color name="AppTheme_Apps_ColorPrimary">#0d47a1</color>
+    <color name="AppTheme_Apps_ColorPrimaryDark">#002171</color>
+    <color name="AppTheme_Apps_ColorPrimaryText">#ffffff</color>
+    <color name="AppTheme_Apps_ColorSecondary">#2962ff</color>
+    <color name="AppTheme_Apps_ColorSecondaryText">#ffffff</color>
+</resources>

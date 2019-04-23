@@ -1,0 +1,9 @@
+<network-security-config>
+
+    <domain-config>
+        <domain includeSubdomains="true">ptx.transportdata.tw</domain>
+        <trust-anchors>
+            <certificates src="@raw/ptx"/>
+        </trust-anchors>
+    </domain-config>
+</network-security-config>

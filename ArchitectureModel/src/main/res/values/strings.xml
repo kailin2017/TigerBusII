@@ -1,0 +1,14 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="appName" tools:ignore="ResourceName">ArchitectureModel</string>
+
+    <string name="userName" tools:ignore="ResourceName">Name：%s</string>
+    <string name="userEmulator" tools:ignore="ResourceName">Emulator：%b</string>
+    <string name="userProxy" tools:ignore="ResourceName">PROXY：%b</string>
+    <string name="userRoot" tools:ignore="ResourceName">ROOT：%b</string>
+    <string name="userIP" tools:ignore="ResourceName">IP Address：%s</string>
+    <string name="userMAC" tools:ignore="ResourceName">MAC Address：%s</string>
+    <string name="userUUID" tools:ignore="ResourceName">UUID：%s</string>
+
+    <string name="button_ok" tools:ignore="ResourceName">OK</string>
+</resources>

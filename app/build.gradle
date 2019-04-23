@@ -1,0 +1,101 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply from: "config.gradle"
+
+android {
+    compileSdkVersion androidConfig.compileSdkVersion
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+    dataBinding {
+        enabled = true
+    }
+    defaultConfig {
+        applicationId "com.kailin.bus"
+        minSdkVersion androidConfig.minSdkVersion
+        targetSdkVersion androidConfig.targetSdkVersion
+        versionCode androidConfig.versionCode
+        versionName androidConfig.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    applicationVariants.all { variant ->
+        def nowDay = new Date().format('YYYYMMdd')
+        variant.outputs.each { output ->
+            variant.assembleProvider.configure {
+                variant.packageApplicationProvider.get().outputDirectory = new File("E:/Android/APK/")
+                output.outputFileName = "TigerBusII-Android-${defaultConfig.versionName}-${variant.buildType.name}-${nowDay}.apk"
+            }
+        }
+    }
+    signingConfigs {
+        release {
+            keyAlias 'mykey'
+            keyPassword '963852'
+            storePassword '963852'
+            storeFile file('/keystore/release.jks')
+        }
+    }
+    testOptions.unitTests.all {
+        testLogging {
+            events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+            outputs.upToDateWhen { false }
+            showStandardStreams = true
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation project(":ArchitectureModel")
+
+    implementation "androidx.appcompat:appcompat:$dependencie.AndroidX"
+    implementation "androidx.constraintlayout:constraintlayout:$dependencie.ConstraintLayout"
+    implementation "com.google.android.material:material:$dependencie.AndroidX"
+
+    implementation "com.google.android.gms:play-services-location:$dependencie.PlayService"
+    implementation "com.google.android.gms:play-services-maps:$dependencie.PlayService"
+
+    implementation "androidx.room:room-runtime:$dependencie.Architecture"
+    implementation "androidx.room:room-rxjava2:$dependencie.Architecture"
+    kapt "android.arch.persistence.room:compiler:$dependencie.Architecture"
+    annotationProcessor "androidx.room:room-compiler:$dependencie.Architecture"
+    testImplementation "androidx.room:room-testing:$dependencie.Architecture"
+
+    implementation "android.arch.navigation:navigation-fragment:$dependencie.Navigation"
+    implementation "android.arch.navigation:navigation-ui:$dependencie.Navigation"
+
+    // Okhttp
+    implementation "com.squareup.okhttp3:okhttp:$dependencie.OkHttp3"
+    implementation "com.squareup.okhttp3:logging-interceptor:$dependencie.OkHttp3"
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:$dependencie.OkHttp3"
+    // retrofit
+    implementation "com.squareup.retrofit2:retrofit:$dependencie.Retrofit2"
+    implementation "com.squareup.retrofit2:converter-gson:$dependencie.Retrofit2"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$dependencie.Retrofit2"
+
+    testImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+
+    testImplementation 'org.robolectric:robolectric:4.1'
+
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
+
+    testImplementation "android.arch.core:core-testing:$dependencie.Architecture"
+    androidTestImplementation "android.arch.core:core-testing:$dependencie.Architecture"
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}

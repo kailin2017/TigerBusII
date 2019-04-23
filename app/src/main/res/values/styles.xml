@@ -1,0 +1,56 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/AppTheme_ColorPrimary</item>
+        <item name="colorPrimaryDark">@color/AppTheme_ColorPrimaryDark</item>
+        <item name="colorAccent">@color/AppTheme_ColorSecondary</item>
+        <item name="android:textColorPrimary">@color/AppTheme_ColorPrimaryText</item>
+        <item name="android:navigationBarColor">@color/AppTheme_ColorPrimaryDark</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.Bus">
+        <item name="colorPrimary">@color/AppTheme_Bus_ColorPrimary</item>
+        <item name="colorPrimaryDark">@color/AppTheme_Bus_ColorPrimaryDark</item>
+        <item name="colorAccent">@color/AppTheme_Bus_ColorSecondary</item>
+        <item name="android:textColorPrimary">@color/AppTheme_Bus_ColorPrimaryText</item>
+        <item name="android:navigationBarColor">@color/AppTheme_Bus_ColorPrimaryDark</item>
+    </style>
+
+    <style name="AppTheme.Bike">
+        <item name="colorPrimary">@color/AppTheme_Bike_ColorPrimary</item>
+        <item name="colorPrimaryDark">@color/AppTheme_Bike_ColorPrimaryDark</item>
+        <item name="colorAccent">@color/AppTheme_Bike_ColorSecondary</item>
+        <item name="android:textColorPrimary">@color/AppTheme_Bike_ColorPrimaryText</item>
+        <item name="android:navigationBarColor">@color/AppTheme_Bike_ColorPrimaryDark</item>
+    </style>
+
+    <style name="AppTheme.Subway">
+        <item name="colorPrimary">@color/AppTheme_Subway_ColorPrimary</item>
+        <item name="colorPrimaryDark">@color/AppTheme_Subway_ColorPrimaryDark</item>
+        <item name="colorAccent">@color/AppTheme_Subway_ColorSecondary</item>
+        <item name="android:textColorPrimary">@color/AppTheme_Subway_ColorPrimaryText</item>
+        <item name="android:navigationBarColor">@color/AppTheme_Subway_ColorPrimaryDark</item>
+    </style>
+
+    <style name="AppTheme.Apps">
+        <item name="colorPrimary">@color/AppTheme_Apps_ColorPrimary</item>
+        <item name="colorPrimaryDark">@color/AppTheme_Apps_ColorPrimaryDark</item>
+        <item name="colorAccent">@color/AppTheme_Apps_ColorSecondary</item>
+        <item name="android:textColorPrimary">@color/AppTheme_Apps_ColorPrimaryText</item>
+        <item name="android:navigationBarColor">@color/AppTheme_Apps_ColorPrimaryDark</item>
+    </style>
+
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+</resources>

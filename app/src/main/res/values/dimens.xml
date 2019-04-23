@@ -1,0 +1,15 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="constraint_0dp">0dp</dimen>
+
+    <dimen name="text12sp">12sp</dimen>
+    <dimen name="text14sp">14sp</dimen>
+    <dimen name="text16sp">16sp</dimen>
+
+    <dimen name="martin6dp">6dp</dimen>
+    <dimen name="martin10dp">10dp</dimen>
+
+    <dimen name="padding6dp">@dimen/martin6dp</dimen>
+    <dimen name="padding10dp">@dimen/martin10dp</dimen>
+</resources>

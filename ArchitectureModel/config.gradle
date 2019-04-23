@@ -1,0 +1,24 @@
+ext {
+    androidConfig = [
+            compileSdkVersion: 28,
+            minSdkVersion    : 21,
+            targetSdkVersion : 28,
+            versionCode      : 1,
+            versionName      : "1.0.0",
+    ]
+    dependencie = [
+            AndroidX        : "1.0.0",
+            Architecture    : "2.0.0",
+            ConstraintLayout: "1.1.1",
+            OkHttp3         : "3.12.1",
+            Retrofit2       : "2.5.0",
+            RxJava2         : "2.2.5",
+            RxAndroid       : "2.0.2",
+            Glide           : "4.8.0",
+            ZxingEmbedded   : "3.6.0",
+            logger          : "2.2.0",
+
+            junit           : "5.2.0",
+            robolectric     : "3.8",
+    ]
+}
