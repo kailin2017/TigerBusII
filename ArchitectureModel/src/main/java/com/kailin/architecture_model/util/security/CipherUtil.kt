@@ -1,6 +1,6 @@
 package com.kailin.utillibrary.security
 
-import android.util.Base64
+import com.kailin.utillibrary.CheckVersionUtil
 
 import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
@@ -23,8 +23,12 @@ abstract class CipherUtil {
     fun encrypt(value: String): String {
         return try {
             val result = encryptCipher!!.doFinal(value.toByteArray())
-            val base64Encode = Base64.encode(result, Base64.NO_WRAP)
-            String(base64Encode)
+            val base64Result: ByteArray = if (CheckVersionUtil.instance.isAboveO) {
+                java.util.Base64.getEncoder().encode(result)
+            } else {
+                android.util.Base64.encode(result, android.util.Base64.NO_WRAP)
+            }
+            String(base64Result)
         } catch (e: Exception) {
             e.printStackTrace()
             ""
@@ -33,7 +37,11 @@ abstract class CipherUtil {
 
     fun decrypt(value: String): String {
         return try {
-            val base64Decode = Base64.decode(value, Base64.NO_WRAP)
+            val base64Decode: ByteArray = if (CheckVersionUtil.instance.isAboveO) {
+                java.util.Base64.getDecoder().decode(value)
+            } else {
+                android.util.Base64.decode(value, android.util.Base64.NO_WRAP)
+            }
             val result = decryptCipher!!.doFinal(base64Decode)
             String(result)
         } catch (e: Exception) {

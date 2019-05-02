@@ -2,13 +2,13 @@ package com.kailin.utillibrary.security
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.kailin.utillibrary.BuildConfig
+import com.kailin.architecture_model.BuildConfig
 import java.util.concurrent.atomic.AtomicReference
 
 class SecurityPreferencesUtil private constructor(context: Context) {
 
     private val sharedPreferences: SharedPreferences =
-        context.applicationContext.getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE)
+            context.applicationContext.getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE)
     private val aesUtil = AESUtil.getInstance("kailin12kailin12kailin12", "kailin12kailin12")
 
     fun putBoolean(key: String, value: Boolean) {

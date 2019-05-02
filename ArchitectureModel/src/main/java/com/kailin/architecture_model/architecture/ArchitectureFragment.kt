@@ -1,7 +1,6 @@
 package com.kailin.architecture_model.architecture
 
 import android.content.BroadcastReceiver
-import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +13,6 @@ import com.kailin.architecture_model.architecture.interfaces.FragmentInterface
 import com.kailin.architecture_model.architecture.interfaces.OnRequestPermissionsResult
 import com.kailin.architecture_model.architecture.interfaces.PermissionInterface
 import com.kailin.architecture_model.architecture.interfaces.ReceiverInterface
-import com.kailin.architecture_model.util.CheckVersionUtil
 import com.kailin.architecture_model.util.LoggerUtil
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +23,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.kailin.utillibrary.CheckVersionUtil
 
 abstract class ArchitectureFragment<B : ViewDataBinding, VM : ArchitectureViewModel> : Fragment(), OnRequestPermissionsResult, PermissionInterface, ReceiverInterface, ArchitectureInterface<VM> {
 
@@ -71,7 +70,7 @@ abstract class ArchitectureFragment<B : ViewDataBinding, VM : ArchitectureViewMo
 
 
     override fun checkPermission(requestCode: Int, vararg permissions: String) {
-        if (CheckVersionUtil.getInstance().isBelowM)
+        if (CheckVersionUtil.instance.isBelowM)
             return
         for (permission in permissions) {
             if (ContextCompat.checkSelfPermission(context!!, permission) == PackageManager.PERMISSION_DENIED) {
@@ -106,7 +105,7 @@ abstract class ArchitectureFragment<B : ViewDataBinding, VM : ArchitectureViewMo
     }
 
     override fun onRxThrowable(throwable: Throwable) {
-        LoggerUtil.getInstance().e(throwable, throwable.message!!)
+        LoggerUtil.instance.e(throwable, throwable.message!!)
         val alertDialog = AlertDialog.Builder(context!!)
                 .setMessage(throwable.message)
                 .setPositiveButton(R.string.button_ok) { d, i -> }

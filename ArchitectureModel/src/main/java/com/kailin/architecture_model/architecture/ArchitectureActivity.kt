@@ -14,7 +14,6 @@ import com.kailin.architecture_model.architecture.interfaces.OnRequestPermission
 import com.kailin.architecture_model.architecture.interfaces.PermissionInterface
 import com.kailin.architecture_model.architecture.interfaces.ReceiverInterface
 import com.kailin.architecture_model.receiver.ShutdownReceiver
-import com.kailin.architecture_model.util.CheckVersionUtil
 import com.kailin.architecture_model.util.LoggerUtil
 
 import java.util.ArrayList
@@ -25,6 +24,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.kailin.utillibrary.CheckVersionUtil
 
 abstract class ArchitectureActivity<B : ViewDataBinding, VM : ArchitectureViewModel> : AppCompatActivity(), OnRequestPermissionsResult, PermissionInterface, ReceiverInterface, ArchitectureInterface<VM> {
 
@@ -56,9 +56,8 @@ abstract class ArchitectureActivity<B : ViewDataBinding, VM : ArchitectureViewMo
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun checkPermission(requestCode: Int, vararg permissions: String) {
-        if (CheckVersionUtil.getInstance().isBelowM)
+        if (CheckVersionUtil.instance.isBelowM)
             return
         for (permission in permissions) {
             if (ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_DENIED) {
@@ -99,7 +98,7 @@ abstract class ArchitectureActivity<B : ViewDataBinding, VM : ArchitectureViewMo
     }
 
     override fun onRxThrowable(throwable: Throwable) {
-        LoggerUtil.getInstance().e(throwable, throwable.message!!)
+        LoggerUtil.instance.e(throwable, throwable.message!!)
         val alertDialog = AlertDialog.Builder(context)
                 .setMessage(throwable.message)
                 .setPositiveButton(R.string.button_ok) { d, i -> }

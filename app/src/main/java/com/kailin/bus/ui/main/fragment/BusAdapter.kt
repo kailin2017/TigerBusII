@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import com.kailin.bus.MyApplication
 import com.kailin.bus.data.bus.route.BusRoute
 import com.kailin.bus.databinding.MainBusItemBinding
-import com.kailin.bus.util.MyDiffUtil
 
 import java.util.ArrayList
 import androidx.recyclerview.widget.RecyclerView
+import com.kailin.utillibrary.widget.GeneralDiffUtil
 
 class BusAdapter : RecyclerView.Adapter<BusAdapter.ViewHolder>() {
 
@@ -29,8 +29,7 @@ class BusAdapter : RecyclerView.Adapter<BusAdapter.ViewHolder>() {
     }
 
     fun setData(newBusRoute: List<BusRoute>) {
-        val myDiffUtil = MyDiffUtil.instance
-        myDiffUtil.setDiff(this, busRoutes, newBusRoute)
+        GeneralDiffUtil.instance.diff(this, busRoutes, newBusRoute)
         busRoutes.clear()
         busRoutes.addAll(newBusRoute)
         notifyDataSetChanged()

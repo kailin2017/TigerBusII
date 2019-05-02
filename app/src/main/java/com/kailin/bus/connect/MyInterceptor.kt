@@ -1,6 +1,6 @@
 package com.kailin.bus.connect
 
-import com.kailin.bus.util.HMACUtil
+import com.kailin.architecture_model.util.security.HMacUtil
 import com.kailin.bus.util.UTCTimeUtil
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -18,8 +18,7 @@ class MyInterceptor private constructor(private val appId: String, private val a
         val oldRequest = chain.request()
         val builder = oldRequest.newBuilder()
 
-        val hmacUtil = HMACUtil.instance
-        val signature = hmacUtil.sha1Encrypt(String.format("x-date: %s", dateString), appKey)
+        val signature = HMacUtil.instance.encrypt(String.format("x-date: %s", dateString), appKey, HMacUtil.hmac_sha1)
         val authorization = String.format("hmac username=\"%s\", algorithm=\"hmac-sha1\", headers=\"x-date\", signature=\"%s\"", appId, signature)
 
         builder.addHeader("Authorization", authorization)

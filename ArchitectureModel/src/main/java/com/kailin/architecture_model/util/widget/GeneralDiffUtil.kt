@@ -8,7 +8,7 @@ class GeneralDiffUtil private constructor() {
 
     fun <T> diff(adapter: RecyclerView.Adapter<*>, oldData: List<T>, newData: List<T>) {
         val diffResult = DiffUtil.calculateDiff(
-            MyDiffCallBack(oldData, newData), true
+                MyDiffCallBack(oldData, newData), true
         )
         diffResult.dispatchUpdatesTo(adapter)
     }
@@ -40,16 +40,17 @@ class GeneralDiffUtil private constructor() {
 
         private val reference = AtomicReference<GeneralDiffUtil>()
 
-        fun instance(): GeneralDiffUtil {
-            while (true) {
-                var instance: GeneralDiffUtil? = reference.get()
-                if (instance != null)
-                    return instance
+        val instance: GeneralDiffUtil
+            get() {
+                while (true) {
+                    var instance: GeneralDiffUtil? = reference.get()
+                    if (instance != null)
+                        return instance
 
-                instance = GeneralDiffUtil()
-                if (reference.compareAndSet(null, instance))
-                    return instance
+                    instance = GeneralDiffUtil()
+                    if (reference.compareAndSet(null, instance))
+                        return instance
+                }
             }
-        }
     }
 }
