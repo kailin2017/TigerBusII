@@ -7,7 +7,7 @@ import com.kailin.bus.util.GsonUtil
 class NameTypeConverters {
 
     @TypeConverter
-    fun revertNameType(value: String): NameType? {
+    fun revertNameType(value: String): NameType {
         val type = object : TypeToken<NameType>() {
 
         }.type

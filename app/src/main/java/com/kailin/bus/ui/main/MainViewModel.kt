@@ -13,6 +13,7 @@ import com.kailin.bus.data.bus.version.BusVersionService
 import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
 import io.reactivex.functions.Consumer
+import io.reactivex.rxkotlin.Observables
 import java.util.*
 
 class MainViewModel : BaseViewModel() {
@@ -29,15 +30,15 @@ class MainViewModel : BaseViewModel() {
     }
 
     fun getBusVersion() {
-        val flowable = Observable.fromArray(*BusCity.values())
-                .flatMap<String> { this.CityFlatMap(it) }
+        val observable = Observable.fromArray(*BusCity.values())
+                .flatMap<String> { this.cityFlatMap(it) }
                 .filter { this.busVersionFilter(it) }
                 .flatMap<ArrayList<BusRoute>> { this.busRouteFlatMap(it) }
 
-        rxOptimization(flowable, Consumer { busRouteOnNext(it) })
+        rxOptimization(observable, Consumer { busRouteOnNext(it) })
     }
 
-    private fun CityFlatMap(busCity: BusCity): Observable<String> {
+    private fun cityFlatMap(busCity: BusCity): Observable<String> {
         val busCityName = busCity.name
         return Observable.zip(
                 busVersionService.getBusVersion(busCityName),
@@ -59,7 +60,6 @@ class MainViewModel : BaseViewModel() {
             busRouteDao.getOldBusRoute(busVersion.versionID) > 0 -> // local有舊版本資料
                 isUpdateBusRoute = true
         }
-
         return if (isUpdateBusRoute) city else ""
     }
 

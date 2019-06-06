@@ -10,26 +10,14 @@ import com.google.gson.annotations.SerializedName
  * OperatorNo (string): 營運業者編號[交通部票證資料系統定義]
  * }
  */
-class RouteOperator {
-
-    @SerializedName("operatorID")
-    var operatorID: String? = null
-
-    @SerializedName("OperatorName")
-    var operatorName: NameType? = null
-
-    @SerializedName("OperatorCode")
-    var operatorCode: String? = null
-
-    @SerializedName("OperatorNo")
-    var operatorNo: String? = null
+data class RouteOperator(
+        @SerializedName("operatorID") var operatorID: String? = "",
+        @SerializedName("OperatorName") var operatorName: NameType? = NameType(),
+        @SerializedName("OperatorCode") var operatorCode: String? = "",
+        @SerializedName("OperatorNo") var operatorNo: String? = ""
+) {
 
     override fun toString(): String {
-        return "RouteOperator{" +
-                "OperatorID='" + operatorID + '\''.toString() +
-                ", OperatorName=" + operatorName +
-                ", OperatorCode='" + operatorCode + '\''.toString() +
-                ", OperatorNo='" + operatorNo + '\''.toString() +
-                '}'.toString()
+        return "RouteOperator(operatorID=$operatorID, operatorName=$operatorName, operatorCode=$operatorCode, operatorNo=$operatorNo)"
     }
 }

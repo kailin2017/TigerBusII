@@ -1,6 +1,9 @@
 package com.kailin.bus.data.bus.route
 
 
+import android.os.Parcel
+import android.os.Parcelable
+import androidx.annotation.NonNull
 import com.google.gson.annotations.SerializedName
 import com.kailin.bus.data.bus.BusCity
 import com.kailin.bus.data.bus.BusCityConverters
@@ -10,11 +13,11 @@ import com.kailin.bus.data.bus.NameTypeConverters
 import com.kailin.bus.data.bus.RouteOperator
 import com.kailin.bus.data.bus.RouteOperatorConverters
 
-import java.util.ArrayList
 import java.util.Date
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import kotlin.collections.ArrayList
 
 /**
  * BusRoute {
@@ -65,110 +68,141 @@ import androidx.room.TypeConverters
  * }
  */
 @Entity(tableName = BusRoute.ROOM_TABLE_NAME)
-class BusRoute {
+class BusRoute() : Parcelable {
 
     @PrimaryKey
+    @NonNull
     @SerializedName("RouteUID")
-    lateinit var routeUID: String
+    var routeUID: String? = ""
 
     @SerializedName("RouteID")
-    var routeID: String? = null
+    var routeID: String? = ""
 
     @SerializedName("HasSubRoutes")
     var hasSubRoutes: Boolean = false
 
-    @SerializedName("Operators")
     @TypeConverters(RouteOperatorConverters::class)
-    var operators: ArrayList<RouteOperator>? = null
+    @SerializedName("Operators")
+    var operators: ArrayList<RouteOperator>? = ArrayList()
 
     @SerializedName("AuthorityID")
-    var authorityID: String? = null
+    var authorityID: String? = ""
 
     @SerializedName("ProviderID")
-    var providerID: String? = null
+    var providerID: String? = ""
 
-    @SerializedName("SubRoutes")
     @TypeConverters(BusSubRouteConverters::class)
-    var subRoutes: ArrayList<BusSubRoute>? = null
+    @SerializedName("SubRoutes")
+    var subRoutes: ArrayList<BusSubRoute>? = ArrayList()
 
-    @SerializedName("BusRouteType")
     @TypeConverters(BusRouteTypeConverters::class)
-    var busRouteType: BusRouteType? = null
+    @SerializedName("BusRouteType")
+    var busRouteType: BusRouteType? = BusRouteType.URBAN_BUS
 
-    @SerializedName("RouteName")
     @TypeConverters(NameTypeConverters::class)
-    var routeName: NameType? = null
+    @SerializedName("RouteName")
+    var routeName: NameType? = NameType()
 
     @SerializedName("DepartureStopNameZh")
-    var departureStopNameZh: String? = null
+    var departureStopNameZh: String? = ""
 
     @SerializedName("DepartureStopNameEn")
-    var departureStopNameEn: String? = null
+    var departureStopNameEn: String? = ""
 
     @SerializedName("DestinationStopNameZh")
-    var destinationStopNameZh: String? = null
+    var destinationStopNameZh: String? = ""
 
     @SerializedName("DestinationStopNameEn")
-    var destinationStopNameEn: String? = null
+    var destinationStopNameEn: String? = ""
 
     @SerializedName("TicketPriceDescriptionZh")
-    var ticketPriceDescriptionZh: String? = null
+    var ticketPriceDescriptionZh: String? = ""
 
     @SerializedName("TicketPriceDescriptionEn")
-    var ticketPriceDescriptionEn: String? = null
+    var ticketPriceDescriptionEn: String? = ""
 
     @SerializedName("FareBufferZoneDescriptionZh")
-    var fareBufferZoneDescriptionZh: String? = null
+    var fareBufferZoneDescriptionZh: String? = ""
 
     @SerializedName("FareBufferZoneDescriptionEn")
-    var fareBufferZoneDescriptionEn: String? = null
+    var fareBufferZoneDescriptionEn: String? = ""
 
     @SerializedName("RouteMapImageUrl")
-    var routeMapImageUrl: String? = null
+    var routeMapImageUrl: String? = ""
 
-    @SerializedName("City")
     @TypeConverters(BusCityConverters::class)
-    var city: BusCity? = null
+    @SerializedName("City")
+    var city: BusCity? = BusCity.Taipei
 
     @SerializedName("CityCode")
-    var cityCode: String? = null
+    var cityCode: String? = ""
 
-    @SerializedName("UpdateTime")
     @TypeConverters(DateTypeConverters::class)
-    var updateTime: Date? = null
+    @SerializedName("UpdateTime")
+    var updateTime: Date? = Date()
 
     @SerializedName("VersionID")
     var versionID: Int = 0
 
-    override fun toString(): String {
-        return "BusRoute{" +
-                "RouteUID='" + routeUID + '\''.toString() +
-                ", RouteID='" + routeID + '\''.toString() +
-                ", HasSubRoutes=" + hasSubRoutes +
-                ", Operators=" + operators +
-                ", AuthorityID='" + authorityID + '\''.toString() +
-                ", ProviderID='" + providerID + '\''.toString() +
-                ", SubRoutes=" + subRoutes +
-                ", BusRouteType=" + busRouteType +
-                ", RouteName=" + routeName +
-                ", DepartureStopNameZh='" + departureStopNameZh + '\''.toString() +
-                ", DepartureStopNameEn='" + departureStopNameEn + '\''.toString() +
-                ", DestinationStopNameZh='" + destinationStopNameZh + '\''.toString() +
-                ", DestinationStopNameEn='" + destinationStopNameEn + '\''.toString() +
-                ", TicketPriceDescriptionZh='" + ticketPriceDescriptionZh + '\''.toString() +
-                ", TicketPriceDescriptionEn='" + ticketPriceDescriptionEn + '\''.toString() +
-                ", FareBufferZoneDescriptionZh='" + fareBufferZoneDescriptionZh + '\''.toString() +
-                ", FareBufferZoneDescriptionEn='" + fareBufferZoneDescriptionEn + '\''.toString() +
-                ", RouteMapImageUrl='" + routeMapImageUrl + '\''.toString() +
-                ", City=" + city +
-                ", CityCode='" + cityCode + '\''.toString() +
-                ", UpdateTime=" + updateTime +
-                ", VersionID=" + versionID +
-                '}'.toString()
+    constructor(parcel: Parcel) : this() {
+        routeUID = parcel.readString()
+        routeID = parcel.readString()
+        hasSubRoutes = parcel.readByte() != 0.toByte()
+        authorityID = parcel.readString()
+        providerID = parcel.readString()
+        departureStopNameZh = parcel.readString()
+        departureStopNameEn = parcel.readString()
+        destinationStopNameZh = parcel.readString()
+        destinationStopNameEn = parcel.readString()
+        ticketPriceDescriptionZh = parcel.readString()
+        ticketPriceDescriptionEn = parcel.readString()
+        fareBufferZoneDescriptionZh = parcel.readString()
+        fareBufferZoneDescriptionEn = parcel.readString()
+        routeMapImageUrl = parcel.readString()
+        cityCode = parcel.readString()
+        versionID = parcel.readInt()
     }
 
-    companion object {
+    override fun toString(): String {
+        return "BusRoute(routeUID='$routeUID', routeID=$routeID, hasSubRoutes=$hasSubRoutes, operators=$operators, authorityID=$authorityID, providerID=$providerID, subRoutes=$subRoutes, busRouteType=$busRouteType, routeName=$routeName, departureStopNameZh=$departureStopNameZh, departureStopNameEn=$departureStopNameEn, destinationStopNameZh=$destinationStopNameZh, destinationStopNameEn=$destinationStopNameEn, ticketPriceDescriptionZh=$ticketPriceDescriptionZh, ticketPriceDescriptionEn=$ticketPriceDescriptionEn, fareBufferZoneDescriptionZh=$fareBufferZoneDescriptionZh, fareBufferZoneDescriptionEn=$fareBufferZoneDescriptionEn, routeMapImageUrl=$routeMapImageUrl, city=$city, cityCode=$cityCode, updateTime=$updateTime, versionID=$versionID)"
+    }
+
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(routeUID)
+        parcel.writeString(routeID)
+        parcel.writeByte(if (hasSubRoutes) 1 else 0)
+        parcel.writeString(authorityID)
+        parcel.writeString(providerID)
+        parcel.writeString(departureStopNameZh)
+        parcel.writeString(departureStopNameEn)
+        parcel.writeString(destinationStopNameZh)
+        parcel.writeString(destinationStopNameEn)
+        parcel.writeString(ticketPriceDescriptionZh)
+        parcel.writeString(ticketPriceDescriptionEn)
+        parcel.writeString(fareBufferZoneDescriptionZh)
+        parcel.writeString(fareBufferZoneDescriptionEn)
+        parcel.writeString(routeMapImageUrl)
+        parcel.writeString(cityCode)
+        parcel.writeInt(versionID)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<BusRoute> {
 
         const val ROOM_TABLE_NAME = "BusRoute"
+
+        const val BUS_ROUTE = "BusRoute"
+
+        override fun createFromParcel(parcel: Parcel): BusRoute {
+            return BusRoute(parcel)
+        }
+
+        override fun newArray(size: Int): Array<BusRoute?> {
+            return arrayOfNulls(size)
+        }
     }
 }

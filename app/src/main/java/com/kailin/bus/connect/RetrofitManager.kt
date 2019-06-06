@@ -23,20 +23,14 @@ import javax.net.ssl.X509TrustManager
 
 class RetrofitManager(interceptor: Interceptor) {
 
-    private var retrofit: Retrofit? = null
+    private var retrofit: Retrofit? = createRetrofit(interceptor)
 
-    init {
-        createRetrofit(interceptor)
-    }
-
-    fun createRetrofit(interceptor: Interceptor) {
+    private fun createRetrofit(interceptor: Interceptor): Retrofit {
         val okHttpClient = createOkHttpClient(interceptor)
 
-        val gson = GsonUtil.instance.gson
-
-        retrofit = Retrofit.Builder()
+        return Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.newThread()))
-                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addConverterFactory(GsonConverterFactory.create(GsonUtil.instance.gson))
                 .baseUrl("https://ptx.transportdata.tw/")
                 .client(okHttpClient)
                 .build()
@@ -80,8 +74,6 @@ class RetrofitManager(interceptor: Interceptor) {
             val trustManager = trustManagerFactory.trustManagers[0]
             if (trustManager is X509TrustManager) {
                 builder.sslSocketFactory(sslContext.socketFactory, trustManager)
-            } else {
-                builder.sslSocketFactory(sslContext.socketFactory)
             }
         } catch (e: Exception) {
             e.printStackTrace()

@@ -25,7 +25,7 @@ android {
         def nowDay = new Date().format('YYYYMMdd')
         variant.outputs.each { output ->
             variant.assembleProvider.configure {
-                variant.packageApplicationProvider.get().outputDirectory = new File("E:/Android/APK/")
+                variant.packageApplicationProvider.get().outputDirectory = new File("/Users/sinopac/Documents/Android/")
                 output.outputFileName = "TigerBusII-Android-${defaultConfig.versionName}-${variant.buildType.name}-${nowDay}.apk"
             }
         }
@@ -35,7 +35,7 @@ android {
             keyAlias 'mykey'
             keyPassword '963852'
             storePassword '963852'
-            storeFile file('/keystore/release.jks')
+            storeFile file('./keystore/release.jks')
         }
     }
     testOptions.unitTests.all {
@@ -66,15 +66,20 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$dependencie.ConstraintLayout"
     implementation "com.google.android.material:material:$dependencie.AndroidX"
 
+    implementation "androidx.viewpager2:viewpager2:1.0.0-alpha04"
+
+
     implementation "com.google.android.gms:play-services-location:$dependencie.PlayService"
     implementation "com.google.android.gms:play-services-maps:$dependencie.PlayService"
 
+    //room
     implementation "androidx.room:room-runtime:$dependencie.Architecture"
     implementation "androidx.room:room-rxjava2:$dependencie.Architecture"
     kapt "android.arch.persistence.room:compiler:$dependencie.Architecture"
     annotationProcessor "androidx.room:room-compiler:$dependencie.Architecture"
     testImplementation "androidx.room:room-testing:$dependencie.Architecture"
 
+    // navigation
     implementation "android.arch.navigation:navigation-fragment:$dependencie.Navigation"
     implementation "android.arch.navigation:navigation-ui:$dependencie.Navigation"
 

@@ -9,18 +9,11 @@ import com.google.gson.annotations.SerializedName
  * }
  */
 
-class NameType {
-
-    @SerializedName("Zh_tw")
-    var zh_tw: String? = null
-
-    @SerializedName("En")
-    var en: String? = null
-
+data class NameType(
+        @SerializedName("Zh_tw") val zh_tw: String? = "高雄宇宙港",
+        @SerializedName("En") val en: String? = ""
+) {
     override fun toString(): String {
-        return "NameType{" +
-                "Zh_tw='" + zh_tw + '\''.toString() +
-                ", En='" + en + '\''.toString() +
-                '}'.toString()
+        return "NameType(zh_tw=$zh_tw, en=$en)"
     }
 }

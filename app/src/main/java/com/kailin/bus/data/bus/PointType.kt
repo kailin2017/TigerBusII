@@ -8,18 +8,30 @@ import com.google.gson.annotations.SerializedName
  * PositionLon (number, optional): 位置經度(WGS84)
  * }
  */
-class PointType {
+data class PointType(
+        @SerializedName("PositionLon") val positionLon: String? = "",
+        @SerializedName("PositionLat") val positionLat: String? = ""
+) {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
 
-    @SerializedName("PositionLon")
-    var positionLon: String? = null
+        other as PointType
 
-    @SerializedName("PositionLat")
-    var positionLat: String? = null
+        if (positionLon != other.positionLon) return false
+        if (positionLat != other.positionLat) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = positionLon?.hashCode() ?: 0
+        result = 31 * result + (positionLat?.hashCode() ?: 0)
+        return result
+    }
 
     override fun toString(): String {
-        return "PointType{" +
-                "PositionLon='" + positionLon + '\''.toString() +
-                ", PositionLat='" + positionLat + '\''.toString() +
-                '}'.toString()
+        return "PointType(positionLon=$positionLon, positionLat=$positionLat)"
     }
+
 }

@@ -7,6 +7,7 @@ import com.kailin.bus.data.bus.Direction
 import com.kailin.bus.data.bus.DirectionTypeConverters
 import com.kailin.bus.data.bus.NameType
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * BusSubRoute {
@@ -24,37 +25,34 @@ import java.util.*
  * }
  */
 
-class BusSubRoute {
-
-    @SerializedName("SubRouteUID")
-    var subRouteUID: String? = null
-
-    @SerializedName("SubRouteID")
-    var subRouteID: String? = null
-
-    @SerializedName("OperatorIDs")
-    var operatorIDs: Array<String>? = null
-
-    @SerializedName("SubRouteName")
-    var subRouteName: NameType? = null
-
-    @SerializedName("Direction")
-    @TypeConverters(DirectionTypeConverters::class)
-    var direction: Direction? = null
-
-    @SerializedName("FirstBusTime")
-    var firstBusTime: String? = null
-
-    @SerializedName("LastBusTime")
-    var lastBusTime: String? = null
-
-    @SerializedName("HolidayFirstBusTime")
-    var holidayFirstBusTime: String? = null
-
-    @SerializedName("HolidayLastBusTime")
-    var holidayLastBusTime: String? = null
+data class BusSubRoute(
+        @SerializedName("SubRouteUID") var subRouteUID: String? = "",
+        @SerializedName("SubRouteID") var subRouteID: String? = "",
+        @SerializedName("OperatorIDs") var operatorIDs: Array<String>? = arrayOf(""),
+        @SerializedName("SubRouteName") var subRouteName: NameType? = NameType(),
+        @SerializedName("Direction") var direction: Direction? = Direction.UNKNOWN,
+        @SerializedName("FirstBusTime") var firstBusTime: String? = "",
+        @SerializedName("LastBusTime") var lastBusTime: String? = "",
+        @SerializedName("HolidayFirstBusTime") var holidayFirstBusTime: String? = "",
+        @SerializedName("HolidayLastBusTime") var holidayLastBusTime: String? = ""
+) {
 
     override fun toString(): String {
         return "BusSubRoute(subRouteUID=$subRouteUID, subRouteID=$subRouteID, operatorIDs=${Arrays.toString(operatorIDs)}, subRouteName=$subRouteName, direction=$direction, firstBusTime=$firstBusTime, lastBusTime=$lastBusTime, holidayFirstBusTime=$holidayFirstBusTime, holidayLastBusTime=$holidayLastBusTime)"
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as BusSubRoute
+
+        if (subRouteUID != other.subRouteUID) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return subRouteUID?.hashCode() ?: 0
     }
 }

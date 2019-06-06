@@ -1,37 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
     app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.kailin.bus.ui.main.fragment.HomeFragment"
-        android:label="HomeFragment">
+        android:name="com.kailin.bus.ui.fragment.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/home_fragment">
     </fragment>
 
     <fragment
         android:id="@+id/busFragment"
-        android:name="com.kailin.bus.ui.main.fragment.BusFragment"
-        android:label="BusFragment">
+        android:name="com.kailin.bus.ui.fragment.bus.BusFragment"
+        android:label="BusFragment"
+        tools:layout="@layout/bus_fragment">
+        <action
+            android:id="@+id/action_busFragment_to_busInfoFragment"
+            app:destination="@id/busInfoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/busInfoFragment"
+        android:name="com.kailin.bus.ui.fragment.bus.BusInfoFragment"
+        android:label="busInfoFragment"
+        tools:layout="@layout/bus_info_fragment">
     </fragment>
 
     <fragment
         android:id="@+id/bikeFragment"
-        android:name="com.kailin.bus.ui.main.fragment.BikeFragment"
-        android:label="BikeFragment">
+        android:name="com.kailin.bus.ui.fragment.bike.BikeFragment"
+        android:label="BikeFragment"
+        tools:layout="@layout/bike_fragment">
     </fragment>
 
     <fragment
         android:id="@+id/subwayFragment"
-        android:name="com.kailin.bus.ui.main.fragment.SubwayFragment"
-        android:label="SubwayFragment">
+        android:name="com.kailin.bus.ui.fragment.subway.SubwayFragment"
+        android:label="SubwayFragment"
+        tools:layout="@layout/subway_fragment">
     </fragment>
 
     <fragment
         android:id="@+id/appsFragment"
-        android:name="com.kailin.bus.ui.main.fragment.AppsFragment"
-        android:label="AppsFragment">
+        android:name="com.kailin.bus.ui.fragment.apps.AppsFragment"
+        android:label="AppsFragment"
+        tools:layout="@layout/apps_fragment">
     </fragment>
 
 </navigation>

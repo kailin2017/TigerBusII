@@ -11,4 +11,17 @@
     <string name="operating_interval">%s - %s</string>
     <string name="title_activity_query">QueryActivity</string>
     <string name="bottomNavigationView" />
+
+    <string name="boarding_get_on">可上車</string>
+    <string name="boarding_get_off">可下車</string>
+    <string name="boarding_get_on_and_off">可上下車</string>
+
+    <string name="direction_going">去程</string>
+    <string name="direction_return">返程</string>
+    <string name="direction_cycle">迴圈</string>
+    <string name="direction_unknown">未知</string>
+
+    <string name="min">%d分</string>
+    <string name="sec">%d秒</string>
+    <string name="real_time">進站中</string>
 </resources>

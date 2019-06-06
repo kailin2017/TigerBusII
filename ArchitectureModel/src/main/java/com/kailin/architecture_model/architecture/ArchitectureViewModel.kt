@@ -6,6 +6,7 @@ import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Consumer
+import io.reactivex.rxkotlin.Observables
 import io.reactivex.schedulers.Schedulers
 
 abstract class ArchitectureViewModel : ViewModel(), LifecycleObserver {

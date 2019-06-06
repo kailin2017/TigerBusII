@@ -25,22 +25,13 @@ class BusVersion  : Comparable<BusVersion> {
     @SerializedName("VersionID")
     var versionID: Int = 0
 
+    @TypeConverters(DateTypeConverters::class)
     @SerializedName("UpdateTime")
-    @TypeConverters(DateTypeConverters::class)
-    var updateTime: Date? = null
+    var updateTime: Date? = Date()
 
+    @TypeConverters(DateTypeConverters::class)
     @SerializedName("UpdateCheckTime")
-    @TypeConverters(DateTypeConverters::class)
-    var updateCheckTime: Date? = null
-
-    override fun toString(): String {
-        return "BusVersion{" +
-                "BusCity='" + busCity + '\''.toString() +
-                ", VersionID=" + versionID +
-                ", UpdateTime=" + updateTime +
-                ", UpdateCheckTime=" + updateCheckTime +
-                '}'.toString()
-    }
+    var updateCheckTime: Date? = Date()
 
     override fun equals(o: Any?): Boolean {
         if (this === o) return true
@@ -55,15 +46,15 @@ class BusVersion  : Comparable<BusVersion> {
 
 
     override fun compareTo(busVersion: BusVersion): Int {
-        val result: Int
-        if (versionID > busVersion.versionID) {
-            result = 1
-        } else if (versionID < busVersion.versionID) {
-            result = -1
-        } else {
-            result = 0
+        return when {
+            versionID > busVersion.versionID -> 1
+            versionID < busVersion.versionID -> -1
+            else -> 0
         }
-        return result
+    }
+
+    override fun toString(): String {
+        return "BusVersion(busCity='$busCity', versionID=$versionID, updateTime=$updateTime, updateCheckTime=$updateCheckTime)"
     }
 
     companion object {
